@@ -1,0 +1,44 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+    {
+        "context": "Editor",
+        "bindings": {
+            "ctrl-h": "editor::Hover",
+            "ctrl-l": "search::ToggleSelection",
+            "ctrl-r": "search::ToggleReplace"
+        }
+    },
+    {
+        "context": "Terminal",
+        "bindings": {
+            "ctrl-`": "workspace::ToggleBottomDock",
+            "ctrl-escape": "terminal_panel::ToggleFocus"
+        }
+    },
+    {
+        "context": "ProjectPanel",
+        "bindings": {
+            "ctrl-shift-e": "workspace::ToggleRightDock",
+            "enter": "project_panel::Open"
+        }
+    },
+    {
+        "context": "Pane",
+        "bindings": {
+            "alt-[": "pane::GoBack",
+            "alt-]": "pane::GoForward"
+        }
+    },
+    {
+        "context": "Editor && mode == full",
+        "bindings": {
+            "alt-z": "editor::ToggleSoftWrap"
+        }
+    }
+]

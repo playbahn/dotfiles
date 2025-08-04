@@ -1,0 +1,6 @@
+.zed
+.playbahn
+.vscode
+*.vim
+# nvim backup files
+*~

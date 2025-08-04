@@ -1,0 +1,137 @@
+add_newline = false
+
+format = """
+${custom.arch_linux}\
+$sudo\
+$username\
+$hostname\
+$localip\
+$shlvl\
+$kubernetes\
+$directory\
+$vcsh\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$docker_context\
+$package\
+$c\
+$cpp\
+$cmake\
+$guix_shell\
+$lua\
+$python\
+$rust\
+$meson\
+$direnv\
+$env_var\
+$custom\
+$cmd_duration\
+$jobs\
+$time\
+$status\
+$container\
+$netns\
+$shell
+$character"""
+
+[c]
+format = '[]($style)[ $symbol($version(-$name)) ]($style inverted)[]($style)'
+style = 'bold #6399d1 dimmed'
+symbol = ' '
+
+[cpp]
+disabled = false
+format = '[]($style)[ $symbol($version(-$name)) ]($style inverted)[]($style)'
+style = 'bold #00579b dimmed'
+symbol = ' '
+
+[cmake]
+format = '[]($style)[ $symbol($version) ]($style inverted)[]($style)'
+style = 'bold #3cad28 dimmed'
+symbol = ' '
+
+[cmd_duration]
+format = '[]($style)[ 󰔛 $duration ]($style inverted)[]($style)'
+style = 'bold bright-yellow dimmed'
+
+[character]
+success_symbol = '[\$](bold green)'
+error_symbol = '[\$](bold red)'
+
+[directory]
+format = '[]($style)[ $path$read_only ]($style inverted)[]($style)'
+read_only = ' '
+style = 'bold bright-cyan dimmed'
+
+[git_branch]
+format = '[]($style)[ $symbol$branch(:$remote_branch) ]($style inverted)[]($style)'
+style = 'bold #f05539 dimmed'
+symbol = ' '
+
+[git_commit]
+format = """[]($style)[  $hash ]($style inverted)[]($style)\
+([]($style)[ $tag ]($style inverted)[]($style))"""
+style = 'bold bright-green dimmed'
+tag_disabled = false
+tag_symbol = ' '
+
+[git_state]
+format = '([]($style)[ $state( $progress_current/$progress_total) ]($style inverted)[]($style)'
+style = 'bold bright-yellow dimmed'
+
+[git_status]
+format = '([]($style)[\[$all_status$ahead_behind\]]($style inverted)[]($style))'
+style = 'bold #f05539 dimmed'
+ahead = '>'
+behind = '<'
+conflicted = '!'
+diverged = '<>'
+modified = '*'
+deleted = 'x'
+
+[lua]
+format = '[]($style)[ $symbol($version) ]($style inverted)[]($style)'
+symbol = ' '
+style = 'bold bright-blue dimmed'
+
+[package]
+format = '[]($style)[ $symbol$version ]($style inverted)[]($style)'
+style = 'bold 208 dimmed'
+symbol = '󰏗 '
+
+[python]
+format = """
+[]($style)[ ${symbol}${pyenv_prefix}(${version}) ]($style inverted)[]($style)\
+([]($style)[$virtualenv]($style inverted)[]($style))"""
+symbol = ' '
+style = 'bold bright-yellow dimmed'
+
+[rust]
+format = '[]($style)[ $symbol($version )]($style inverted)[]($style)'
+style = 'bold #ef4700 dimmed'
+symbol = ' '
+
+[shlvl]
+threshold = 3
+format = '[]($style)[  $shlvl ]($style inverted)[]($style)'
+style = 'bold bright-yellow dimmed'
+disabled = false
+
+[status]
+format = '[]($style)[ $status ]($style inverted)[]($style)([]($style)[ $signal_name\($signal_number\)]($style inverted)[]($style))'
+style = 'bold bright-red dimmed'
+disabled = false
+map_symbol = false
+pipestatus = true
+pipestatus_format = '[]($style)[ $pipestatus ]($style inverted)[]($style)([]($style)[ $signal_name\($signal_number\)( $maybe_int )]($style inverted)[]($style))'
+pipestatus_segment_format = '[$status]($style inverted)'
+pipestatus_separator = '  '
+
+[custom.arch_linux]
+format = '[  ]($style inverted)[]($style)'
+style = 'bold #1092d0 dimmed'
+when = true
+

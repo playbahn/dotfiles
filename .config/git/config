@@ -1,0 +1,14 @@
+[user]
+	name = playbahn
+	email = plabanroy69@gmail.com
+[core]
+	editor = nvim
+[sendemail]
+	smtpserver = smtp.gmail.com
+	smtpuser = plabanroy69@gmail.com
+	smtpPass = seslbvqbrsuotdcn
+	smtpencryption = tls
+	smtpserverport = 587
+	annotate = yes
+[init]
+	defaultBranch = main

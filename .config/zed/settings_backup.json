@@ -1,0 +1,88 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+    "vim_mode": false,
+    "features": { "inline_completion_provider": "zed" },
+    "base_keymap": "VSCode",
+    "ui_font_size": 16,
+    "buffer_font_size": 14,
+    "buffer_line_height": "comfortable",
+    "buffer_font_features": {
+        "calt": false
+    },
+    "cursor_blink": false,
+    "theme": { "mode": "system", "light": "One Light", "dark": "One Dark" },
+    "experimental.theme_overrides": {
+        "terminal.ansi.bright_red": "#ff5454ff",
+        "terminal.ansi.bright_blue": "#5454ffff",
+        "terminal.ansi.bright_green": "#4be44bff",
+        "terminal.ansi.bright_cyan": "#54ffffff",
+        "terminal.ansi.bright_yellow": "#ffff54ff"
+    },
+    "autosave": { "after_delay": { "milliseconds": 1000 } },
+    "tabs": {
+        "git_status": true,
+        "file_icons": true,
+        "show_diagnostics": "errors"
+    },
+    "auto_update": true,
+    "git": {
+        "git_gutter": "tracked_files",
+        "inline_blame": { "enabled": true }
+    },
+    "journal": { "hour_format": "hour24" },
+    "project_panel": {
+        "dock": "right",
+        "auto_fold_dirs": true
+    },
+    "languages": {
+        "Shell Script": { "hard_tabs": false },
+        "C++": { "format_on_save": "on", "tab_size": 4 },
+        "HTML": { "tab_size": 2 },
+        "JSONC": { "tab_size": 4 },
+        "Plain Text": { "indent_guides": { "enabled": false } },
+        "TOML": { "language_servers": ["!taplo", "..."] }
+    },
+    "lsp": {
+        "clangd": {
+            "binary": { "arguments": ["--function-arg-placeholders=1"] }
+        },
+        "rust-analyzer": {
+            "initialization_options": {
+                "checkOnSave": { "command": "clippy" },
+                "inlayHints": {
+                    "bindingModeHints": { "enable": true },
+                    "closingBraceHints": { "minLines": 0 },
+                    "closureReturnTypeHints": { "enable": "always" },
+                    "lifetimeElisionHints": {
+                        "enable": "skip_trivial",
+                        "useParameterNames": true
+                    },
+                    "maxLength": null
+                }
+            }
+        }
+    },
+    "inlay_hints": {
+        "enabled": true,
+        "show_type_hints": true,
+        "show_parameter_hints": true,
+        "show_other_hints": true
+    },
+    "soft_wrap": "editor_width",
+    "file_types": { "CMake": ["CMakeLists.txt"] },
+    "scroll_beyond_last_line": "vertical_scroll_margin",
+    "toolbar": { "quick_actions": false, "selections_menu": false },
+    "gutter": {
+        "line_numbers": false,
+        "code_actions": false,
+        "runnables": false,
+        "folds": false
+    }
+}

@@ -1,0 +1,104 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+/// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+    "icon_theme": "Zed (Default)",
+    "auto_update": true,
+    "autosave": { "after_delay": { "milliseconds": 1000 } },
+    "base_keymap": "VSCode",
+    "buffer_font_size": 14.0,
+    "buffer_line_height": "comfortable",
+    "confirm_quit": true,
+    "cursor_blink": false,
+    "diagnostics": {
+        "include_warnings": true,
+        "inline": {
+            "enabled": true,
+            "update_debounce_ms": 150,
+            "padding": 4,
+            "min_column": 0,
+            "max_severity": "error"
+        }
+    },
+    "experimental.theme_overrides": {
+        "terminal.ansi.bright_red": "#ff5454ff",
+        "terminal.ansi.bright_blue": "#5454ffff",
+        "terminal.ansi.bright_green": "#4be44bff",
+        "terminal.ansi.bright_cyan": "#54ffffff",
+        "terminal.ansi.bright_yellow": "#ffff54ff"
+    },
+    "features": { "edit_prediction_provider": "none" },
+    "file_types": { "CMake": ["CMakeLists.txt"] },
+    "git": {
+        "git_gutter": "tracked_files",
+        "inline_blame": {
+            "enabled": true,
+            "show_commit_summary": true
+        }
+    },
+    "gutter": {
+        "runnables": false,
+        "folds": false
+    },
+    "inlay_hints": {
+        "enabled": true,
+        "show_type_hints": true,
+        "show_parameter_hints": true,
+        "show_other_hints": true
+    },
+    "journal": { "hour_format": "hour24" },
+    "languages": {
+        "C++": { "format_on_save": "on", "tab_size": 4 },
+        "HTML": { "tab_size": 2 },
+        "JSONC": { "show_edit_predictions": false, "tab_size": 4 },
+        "Plain Text": { "indent_guides": { "enabled": false } },
+        "Shell Script": { "hard_tabs": false, "tab_size": 4 },
+        "TOML": { "language_servers": ["!taplo", "..."] }
+    },
+    "lsp": {
+        "clangd": {
+            "binary": {
+                "arguments": ["--log=verbose"]
+            }
+        },
+        "rust-analyzer": {
+            "initialization_options": {
+                "cargo": { "allFeatures": true },
+                // "checkOnSave": false,
+                "inlayHints": {
+                    "bindingModeHints": { "enable": true },
+                    "closingBraceHints": { "minLines": 0 },
+                    "closureReturnTypeHints": { "enable": "always" },
+                    "expressionAdjustmentHints": {
+                        "enable": "always",
+                        "hideOutsideUnsafe": true
+                    },
+                    "maxLength": null
+                },
+                "typing": {
+                    "triggerChars": "=.>"
+                }
+            }
+        }
+    },
+    "project_panel": {
+        "dock": "right",
+        "auto_fold_dirs": true
+    },
+    "scroll_beyond_last_line": "vertical_scroll_margin",
+    "soft_wrap": "editor_width",
+    "tabs": {
+        "git_status": true,
+        "file_icons": true,
+        "show_diagnostics": "all"
+    },
+    "theme": { "mode": "system", "light": "One Light", "dark": "One Dark" },
+    "toolbar": { "quick_actions": false, "selections_menu": false },
+    "vim_mode": false
+    // "relative_line_numbers": true
+}
