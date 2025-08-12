@@ -42,8 +42,7 @@
         }
     },
     "gutter": {
-        "runnables": false,
-        "folds": false
+        "runnables": false
     },
     "inlay_hints": {
         "enabled": true,
@@ -98,7 +97,7 @@
         "show_diagnostics": "all"
     },
     "theme": { "mode": "system", "light": "One Light", "dark": "One Dark" },
-    "toolbar": { "quick_actions": false, "selections_menu": false },
+    "toolbar": { "quick_actions": true, "selections_menu": false },
     "vim_mode": false
     // "relative_line_numbers": true
 }

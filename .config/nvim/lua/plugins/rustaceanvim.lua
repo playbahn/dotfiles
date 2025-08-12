@@ -2,7 +2,10 @@ return {
     'mrcjkb/rustaceanvim',
     version = '^6', -- Recommended
     lazy = false, -- This plugin is already lazy
-    dependencies = { 'saghen/blink.cmp' },
+    dependencies = {
+        { 'j-hui/fidget.nvim', opts = {} }, -- Useful status updates for LSP.
+        'saghen/blink.cmp',
+    },
     config = function()
         -- From rustaceanvim docs:
         -- You can also use :h vim.lsp.config to configure vim.g.rustaceanvim.server options.
@@ -30,21 +33,13 @@ return {
                             useParameterNames = true,
                         },
                         maxLength = vim.NIL,
+                        semanticHighlighting = {
+                            punctuation = {
+                                enable = true,
+                                specialization = { enable = true },
+                            },
+                        },
                         typing = { triggerChars = '=.{(><' },
-                    },
-                    rustfmt = {
-                        -- extraArgs = {
-                        --     '--config',
-                        --     'wrap_comments=true,'
-                        --         .. 'condense_wildcard_suffixes=true,'
-                        --         .. 'format_code_in_doc_comments=true,'
-                        --         .. 'format_macro_matchers=true,'
-                        --         .. 'format_strings=true,'
-                        --         .. 'match_block_trailing_comma=true,'
-                        --         .. 'imports_granularity=Module,'
-                        --         .. 'reorder_impl_items=true,'
-                        --         .. 'use_field_init_shorthand=true',
-                        -- },
                     },
                 },
             },
@@ -53,6 +48,7 @@ return {
         vim.g.rustaceanvim = {
             --- @type `rustaceanvim.tools.Opts`
             tools = {
+                code_actions = { ui_select_fallback = true },
                 reload_workspace_from_cargo_toml = true,
                 --- @type vim.lsp.util.open_floating_preview.Opts
                 float_win_config = {
@@ -61,12 +57,11 @@ return {
                 },
             },
             --- @type `rustaceanvim.lsp.ClientOpts`
+            --- rustaceanvim-specific server options
             --- @type `rustaceanvim.lsp.ClientConfig`
             server = {},
             --- @type `rustaceanvim.dap.Opts`
-            dap = {
-                -- ...
-            },
+            dap = {},
         }
     end,
 }

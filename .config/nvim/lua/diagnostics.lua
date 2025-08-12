@@ -1,34 +1,33 @@
 -- Diagnostic Config
 -- See :help vim.diagnostic.Opts
 vim.diagnostic.config {
-    severity_sort = true,
-    float = {
-        --- @diagnostic disable-next-line
-        border = { "", "", "", " ", "", "", "", " " },
-        source = "if_many",
-    },
-    underline = { severity = vim.diagnostic.severity.ERROR },
-    signs = vim.g.have_nerd_font
-        and {
-            text = {
-                [vim.diagnostic.severity.ERROR] = "󰅚 ",
-                [vim.diagnostic.severity.WARN] = "󰀪 ",
-                [vim.diagnostic.severity.INFO] = "󰋽 ",
-                [vim.diagnostic.severity.HINT] = "󰌶 ",
-            },
-        }
-        or {},
+    -- underline = { severity = vim.diagnostic.severity.ERROR },
     virtual_text = {
-        source = "if_many",
         spacing = 2,
-        -- format = function(diagnostic)
-        --     local diagnostic_message = {
-        --         [vim.diagnostic.severity.ERROR] = diagnostic.message,
-        --         [vim.diagnostic.severity.WARN] = diagnostic.message,
-        --         [vim.diagnostic.severity.INFO] = diagnostic.message,
-        --         [vim.diagnostic.severity.HINT] = diagnostic.message,
-        --     }
-        --     return diagnostic_message[diagnostic.severity]
-        -- end,
+        format = function(diagnostic)
+            return diagnostic.message:match '^([^\n]*)'
+        end,
     },
+    signs = vim.g.have_nerd_font and {
+        text = {
+            [vim.diagnostic.severity.ERROR] = '󰅚 ',
+            [vim.diagnostic.severity.WARN] = '󰀪 ',
+            [vim.diagnostic.severity.INFO] = '󰋽 ',
+            [vim.diagnostic.severity.HINT] = '󰌶 ',
+        },
+    } or {},
+    float = {
+        header = "",
+        --- @diagnostic disable-next-line
+        border = { '', '', '', ' ', '', '', '', ' ' },
+        suffix = function(diagnostic, _, _)
+            --- @diagnostic disable-next-line
+            return string.format(' [%s %s]', diagnostic.source, diagnostic.code)
+        end,
+    },
+    update_in_insert = true,
+    severity_sort = true,
+    jump = {
+        float = true,
+    }
 }

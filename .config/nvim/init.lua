@@ -36,6 +36,7 @@ end
 local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
+
 -- [[ Configure and install plugins ]]
 -- To check the current status of your plugins, run
 --   :Lazy
@@ -64,6 +65,12 @@ require('lazy').setup({
     require 'plugins.guess-indent',
     -- Useful plugin to show you pending keybinds.
     require 'plugins.which-key',
+    -- Folding
+    require 'plugins.nvim-ufo',
+    -- A collection of QoL plugins for Neovim
+    require 'plugins.snacks',
+    -- statuscolumn customization
+    -- require 'plugins.statuscol',
     -- Fuzzy Finder (files, lsp, etc)
     require 'plugins.telescope',
     -- statusline

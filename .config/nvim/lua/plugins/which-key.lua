@@ -11,14 +11,30 @@
 --
 -- Then, because we use the `opts` key (recommended), the configuration runs
 -- after the plugin has been loaded as `require(MODULE).setup(opts)`.
-
+-- return {
+--     'folke/which-key.nvim',
+--     event = 'VeryLazy',
+--     opts = {
+--         -- your configuration comes here
+--         -- or leave it empty to use the default settings
+--         -- refer to the configuration section below
+--     },
+--     keys = {
+--         {
+--             '<leader>?',
+--             function()
+--                 require('which-key').show { global = false }
+--             end,
+--             desc = 'Buffer Local Keymaps (which-key)',
+--         },
+--     },
+-- }
 return {
     "folke/which-key.nvim",
     event = "VimEnter", -- Sets the loading event to 'VimEnter'
     opts = {
         -- delay between pressing a key and opening which-key (milliseconds)
         -- this setting is independent of vim.o.timeoutlen
-        delay = 0,
         icons = {
             -- set icon mappings to true if you have a Nerd Font
             mappings = vim.g.have_nerd_font,

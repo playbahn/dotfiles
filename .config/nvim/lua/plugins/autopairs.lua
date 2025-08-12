@@ -74,7 +74,7 @@ return {
         -- ├─────────────────┼─────────┼─────────────────┤
         -- │ `local data = ` │ `=`     │ `local data ==` │
         -- └─────────────────┴─────────┴─────────────────┘
-        npairs.add_rule(Rule('=', '')
+        npairs.add_rule(Rule('=', '', {'-sh', '-bash'})
             :with_pair(cond.not_inside_quote())
             :with_pair(function(opts)
                 local last_char = opts.line:sub(opts.col - 1, opts.col - 1)

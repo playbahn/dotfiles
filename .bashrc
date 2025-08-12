@@ -5,15 +5,24 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+#################################################################### Bash stuff
+HISTCONTROL=ignoreboth:erasedups
+
+####################################################################### Aliases
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias ..='cd ..'
 alias nv='nvim'
-
 alias dotfiles='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
+alias arti="cargo run --profile quicktest --all-features -p arti -- "
 
-HISTCONTROL=ignoreboth:erasedups
+####################################################################### Exports
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+export EDITOR=nvim
 
+######################################################################### $PATH
 if [[ $PATH != *"$HOME/.local/bin"* ]]; then
     export PATH=$HOME/.local/bin:$PATH
 fi
@@ -22,14 +31,13 @@ if [[ $PATH != *"$HOME/.cargo/bin"* ]]; then
     export PATH=$HOME/.cargo/bin:$PATH
 fi
 
+########################################################################### fzf
 # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --bash)"
 
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_STATE_HOME="$HOME/.local/state"
+ignore_dirs=(".git" "node_modules" "target")
 
-alias arti="cargo run --profile quicktest --all-features -p arti -- "
+walker_skip=$(IFS=','; echo "${ignore_dirs[*]}")
 
 export FZF_DEFAULT_OPTS="
     --multi
@@ -39,18 +47,28 @@ export FZF_DEFAULT_OPTS="
     --layout            reverse
     --border            sharp
     --info              inline-right
+    --walker-skip       $walker_skip
     --preview           '$HOME/oss/fzf/bin/fzf-preview.sh {}'
     --preview-border    line
     --tabstop           4"
 export FZF_CTRL_T_OPTS="
-    --walker-skip       .git,node_modules,target
+    --walker-skip       $walker_skip
     --preview           'bat -n --color=always {}'
     --bind              'ctrl-/:change-preview-window(down|hidden|)'"
 export FZF_CTRL_R_OPTS="
     --no-preview"
+
+tree_ignore=$(printf ' -I %s' "${ignore_dirs[@]}")
+
 export FZF_ALT_C_OPTS="
-    --walker-skip       .git,node_modules,target
-    --preview           'tree -C {}'"
+    --walker-skip       $walker_skip
+    --preview           'tree -C $tree_ignore --gitignore {}'"
+# Options for path completion (e.g. vim **<TAB>)
+export FZF_COMPLETION_PATH_OPTS="
+    --walker file,dir,follow,hidden"
+# Options for directory completion (e.g. cd **<TAB>)
+export FZF_COMPLETION_DIR_OPTS="
+    --walker dir,follow,hidden"
 
 # Advanced customization of fzf options via _fzf_comprun function
 # - The first argument to the function is the name of the command.
@@ -75,18 +93,21 @@ _fzf_comprun() {
     esac
 }
 
-export EDITOR=nvim
-
+###################################################################### starship
 eval "$(starship init bash)"
 
+########################################################################## tmux
 if [[ -z "$TMUX" ]]; then
     tmux new -A
 fi
 
+############################################################### Bash completion
 # Use bash-completion, if available
-[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
+[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] &&
     . /usr/share/bash-completion/bash_completion
 
+#################################################################### Git prompt
+# Using starship instead
 # . /home/playbahn/.git-prompt.sh
 
 # GIT_PS1_SHOWDIRTYSTATE=1
@@ -97,4 +118,5 @@ fi
 # GIT_PS1_STATESEPARATOR=' '
 # GIT_PS1_SHOWCOLORHINTS=1
 
+########################################################################## $PS1
 PS1='[\u@\h \W]$ '

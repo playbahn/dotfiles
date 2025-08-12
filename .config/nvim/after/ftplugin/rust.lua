@@ -8,14 +8,13 @@ local map = function(keys, func, desc, mode)
     )
 end
 
-map('<leader>a', function()
-    vim.cmd.RustLsp 'codeAction'
-end, 'Code Action')
+vim.opt_local.breakat:remove { '!', ':', '.' }
+vim.opt_local.breakat:append '})]'
 
-map('J', function()
-    vim.cmd.RustLsp 'joinLines'
-end, 'Join adjacent lines')
+vim.g.rustfmt_autosave_if_config_present = 1
 
-map('K', function()
-    vim.cmd.RustLsp { 'hover', 'actions' }
-end, 'Hover Actions')
+-- stylua: ignore start
+map('<leader>a', function() vim.cmd 'RustLsp codeAction'    end, 'Code Action'        )
+map('J',         function() vim.cmd 'RustLsp joinLines'     end, 'Join adjacent lines')
+map('K',         function() vim.cmd 'RustLsp hover actions' end, 'Hover Actions'      )
+-- stylua: ignore end

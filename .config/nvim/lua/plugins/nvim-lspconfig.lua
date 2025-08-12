@@ -20,30 +20,14 @@ return {
             clangd = {},
             bashls = {},
             lua_ls = {
-                -- cmd = { ... },
-                -- filetypes = { ... },
-                -- capabilities = {},
                 settings = {
                     Lua = {
-                        format = {
-                            enable = true,
-                            defaultConfig = {
-                                indent_style = 'space',
-                                indent_size = '4',
-                                quote_style = 'double',
-                                max_line_length = '100',
-                                trailing_table_separator = 'smart',
-                                call_arg_parenthesis = 'remove',
-                                space_after_comment_dash = 'true',
-                                insert_final_newline = 'true',
-                                -- align_continuous_assign_statement = "true",
-                                -- align_continuous_rect_table_field = "true",
-                            },
-                        },
                         completion = {
                             callSnippet = 'Replace',
                         },
-                        diagnostics = { disable = { 'missing-fields' } },
+                        diagnostics = {
+                            disable = { 'missing-fields' },
+                        },
                     },
                 },
             },
@@ -56,8 +40,7 @@ return {
         local capabilities = require('blink.cmp').get_lsp_capabilities({}, true)
 
         for server, opts in pairs(servers) do
-            opts.capabilities =
-                vim.tbl_deep_extend('force', {}, capabilities, opts.capabilities or {})
+            opts.capabilities = vim.tbl_deep_extend('force', capabilities, opts.capabilities or {})
             vim.lsp.config(server, opts)
             vim.lsp.enable(server)
         end
